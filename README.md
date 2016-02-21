@@ -16,9 +16,9 @@ The use of snake_case is advised but CamelCase is also accepted. You may want to
 
 
 TODO:
-Error handling for duplicate autoload records, &c.
-Fix issues that occur when a module name is typed in all caps.
-Check that files aren't being wiped when the app is stopped prematurely and handle accordingly.
-Actually test this on something other than a Debian
-Write actual tests for this thing(?)
+* Error handling for duplicate autoload records, &c.
+* Fix issues that occur when a module name is typed in all caps.
+* Check that files aren't being wiped when the app is stopped prematurely and handle accordingly.
+* Actually test this on something other than a Debian
+* Write actual tests for this thing(?)
 

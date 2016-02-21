@@ -8,6 +8,21 @@
 $Input = "$argv[1]";
 
 
+##Here we run the app##
+
+$errors = array();
+get_model_name($Input);
+$ModelName = snake_to_camel($Input);
+$model_name = phrase_to_snake($Input);
+create_module_folders($ModelName, $model_name);
+create_module_file($ModelName);
+write_the_autoloader($ModelName);
+create_application_config($ModelName);
+update_composer($errors);
+create_module_config($ModelName, $model_name);
+print_errors($errors);
+
+
 ##Set Model Names##
 
 function snake_to_camel($phrase) {
@@ -25,12 +40,12 @@ function get_model_name($arg){
 	}
 }
 
-function create_module_folders($arg, $arg2) {
-	mkdir("./module/{$arg}/config", 0777, true);
-	mkdir("./module/{$arg}/src/{$arg}/Controller/{$arg2}/{$arg2}", 0777, true);
-	mkdir("./module/{$arg}/src/{$arg}/Form/{$arg2}/{$arg2}", 0777, true);
-	mkdir("./module/{$arg}/src/{$arg}/Model/{$arg2}/{$arg2}", 0777, true);
-	mkdir("./module/{$arg}/src/{$arg}/view/{$arg2}/{$arg2}", 0777, true);
+function create_module_folders($camel, $snake) {
+	mkdir("./module/{$camel}/config", 0777, true);
+	mkdir("./module/{$camel}/src/{$camel}/Controller/{$snake}/{$snake}", 0777, true);
+	mkdir("./module/{$camel}/src/{$camel}/Form/{$snake}/{$snake}", 0777, true);
+	mkdir("./module/{$camel}/src/{$camel}/Model/{$snake}/{$snake}", 0777, true);
+	mkdir("./module/{$camel}/src/{$camel}/view/{$snake}/{$snake}", 0777, true);
 }
 
 
@@ -175,21 +190,5 @@ function print_errors($found_errors){
 		echo "$e\n";
 	}
 }
-
-
-##Here we run the app##
-
-$errors = array();
-get_model_name($Input);
-$ModelName = snake_to_camel($Input);
-$model_name = phrase_to_snake($Input);
-create_module_folders($ModelName, $model_name);
-create_module_file($ModelName);
-write_the_autoloader($ModelName);
-create_application_config($ModelName);
-update_composer($errors);
-create_module_config($ModelName, $model_name);
-print_errors($errors);
-
 
 ?>
